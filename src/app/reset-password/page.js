@@ -25,7 +25,6 @@ export default function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
-  // Set isClient to true when component mounts on client side
   useEffect(() => {
     setIsClient(true);
   }, []);
