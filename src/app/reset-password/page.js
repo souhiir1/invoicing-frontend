@@ -7,6 +7,9 @@ import { FiLock, FiArrowLeft, FiCheckCircle } from 'react-icons/fi';
 import styles from './page.module.css';
 import Link from 'next/link';
 
+// Add this export to force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function ResetPassword() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -20,16 +23,23 @@ export default function ResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
+  // Set isClient to true when component mounts on client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
-    const t = searchParams.get('token');
-    if (!t) {
-      setError('Lien invalide ou expiré.');
-    } else {
-      setToken(t);
+    if (isClient) {
+      const t = searchParams.get('token');
+      if (!t) {
+        setError('Lien invalide ou expiré.');
+      } else {
+        setToken(t);
+      }
     }
-  }, [searchParams]);
+  }, [searchParams, isClient]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +75,19 @@ export default function ResetPassword() {
       setIsLoading(false);
     }
   };
+
+  // Don't render form until client-side
+  if (!isClient) {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.formBox}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>Chargement...</h2>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.wrapper}>
