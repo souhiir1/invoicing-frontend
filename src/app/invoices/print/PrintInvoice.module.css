@@ -1,0 +1,240 @@
+.modalOverlay { 
+  position: fixed; 
+  inset: 0; 
+  background: rgba(0,0,0,0.45); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  z-index:1200; 
+  padding:20px; 
+}
+
+.modal { 
+  width:100%; 
+  max-width:1000px; 
+  max-height:95vh; 
+  overflow:auto; 
+  background:#fff; 
+  border-radius:10px; 
+  box-shadow:0 10px 40px rgba(0,0,0,0.25); 
+  padding:16px; 
+}
+
+.modalHeader { 
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center; 
+  margin-bottom:12px; 
+}
+
+.modalActions { 
+  display:flex; 
+  gap:8px; 
+}
+
+.btnPrimary { 
+  background:#1B1366; 
+  color:white; 
+  border:none; 
+  padding:8px 12px; 
+  border-radius:6px; 
+  cursor:pointer; 
+}
+
+.btnSecondary { 
+  background:#efefef; 
+  border:none; 
+  padding:8px 12px; 
+  border-radius:6px; 
+  cursor:pointer; 
+}
+
+.center { 
+  text-align:center; 
+  padding:40px 0; 
+  color:#444; 
+}
+
+.centerError { 
+  text-align:center; 
+  padding:20px 0; 
+  color:#b00; 
+}
+
+.previewArea { 
+  background:#f4f6fb; 
+  padding:16px; 
+  display:flex; 
+  justify-content:center; 
+  overflow: auto;
+}
+
+.invoiceA4 { 
+  background:white; 
+  width:210mm; 
+  min-height:297mm; 
+  box-sizing:border-box; 
+  padding:15mm; 
+  display:flex; 
+  flex-direction:column; 
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* HEADER STYLES */
+.header { 
+  margin-bottom:5mm; 
+}
+
+.logoContainer {
+  margin-bottom: 3mm;
+}
+
+.logo { 
+  max-width:120px; 
+  max-height:60px; 
+  object-fit:contain; 
+}
+
+.logoPlaceholder { 
+  font-weight:700; 
+  font-size:1rem; 
+  padding:6px 8px; 
+  background:#f5f5f7; 
+  color:#1B1366; 
+  display: inline-block;
+}
+
+.headerTable { 
+  width:100%; 
+  border-collapse:collapse; 
+}
+
+.headerTable td { 
+  vertical-align:top; 
+  padding:2mm; 
+  font-size:11px; 
+}
+
+.invoiceRef {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 2mm !important;
+}
+
+.separatorLine {
+  border-bottom: 1px solid #000;
+  margin: 2mm 0;
+}
+
+/* ITEMS TABLE STYLES */
+.itemsSection { 
+  flex: 1;
+  margin: 2mm 0;
+}
+
+.itemsTable { 
+  width:100%; 
+  border-collapse:collapse; 
+  table-layout: fixed;
+}
+
+.itemsTable th { 
+  background:#1B1366; 
+  color:white; 
+  font-size:10px; 
+  padding:2mm 1mm; 
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.itemsTable td { 
+  border:1px solid #ddd; 
+  padding:2mm 1mm; 
+  font-size:10px; 
+  vertical-align: top;
+}
+
+.left { 
+  text-align:left; 
+}
+
+.right { 
+  text-align:right; 
+}
+
+.center {
+  text-align: center;
+}
+
+/* FOOTER STYLES */
+.footer { 
+  margin-top:5mm; 
+}
+
+.footerTable { 
+  width:100%; 
+  border-collapse:collapse; 
+}
+
+.signatureSection { 
+  width:50%; 
+  vertical-align:top; 
+  padding:2mm;
+  font-weight: bold;
+}
+
+.totalsSection { 
+  width:50%; 
+  vertical-align:top; 
+  padding:2mm;
+}
+
+.totalsTable { 
+  width:100%; 
+  border-collapse:collapse; 
+}
+
+.totalsTable td { 
+  padding:1mm 2mm; 
+  border:1px solid #ddd; 
+  font-size:11px; 
+}
+
+.totalRow td { 
+  font-weight:800; 
+  background:#f5f5f7; 
+}
+
+@media (max-width:1100px) {
+  .modal { 
+    max-width:960px; 
+    padding:12px; 
+  }
+  .invoiceA4 { 
+    width:100%; 
+    min-height:auto; 
+    padding:12px; 
+  }
+}
+
+/* Print-specific styles */
+@media print {
+  .modalOverlay,
+  .modal,
+  .modalHeader,
+  .modalActions {
+    display: none !important;
+  }
+  
+  .previewArea {
+    background: white;
+    padding: 0;
+  }
+  
+  .invoiceA4 {
+    box-shadow: none;
+    margin: 0;
+    padding: 15mm;
+  }
+}

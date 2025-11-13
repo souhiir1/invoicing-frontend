@@ -1,0 +1,201 @@
+.wrapper {
+  /* min-height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f9f9ff 0%, #f0edff 100%);
+  padding: 20px;
+}
+
+.formBox {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(119, 60, 168, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1B1366;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+.inputGroup {
+  margin-bottom: 24px;
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #773CA8;
+  font-size: 18px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #773CA8;
+  box-shadow: 0 0 0 3px rgba(119, 60, 168, 0.1);
+  background-color: white;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.passwordToggle:hover {
+  color: #773CA8;
+  background: rgba(119, 60, 168, 0.05);
+}
+
+.button {
+  background-color: #773CA8;
+  color: white;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #5d2e86;
+}
+
+.buttonIcon {
+  transition: transform 0.3s ease;
+}
+
+.button:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.links {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.loginPrompt {
+  color: #64748b;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.trialText {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+.link {
+  color: #773CA8;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 14px;
+  margin: -8px 0 16px;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #ef4444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .formBox {
+    padding: 30px 24px;
+    border-radius: 12px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  
+  .input {
+    padding: 12px 14px 12px 44px;
+    font-size: 14px;
+  }
+  
+  .button {
+    padding: 14px;
+    font-size: 15px;
+  }
+  
+  .passwordToggle {
+    font-size: 13px;
+    padding: 2px 6px;
+  }
+}

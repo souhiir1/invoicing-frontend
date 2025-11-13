@@ -1,0 +1,332 @@
+
+.wrapper {
+   height: 100%; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(135deg, #f9f9ff 0%, #f0edff 100%);
+}
+
+/* Welcome section */
+.welcomeSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 2rem; */
+  background: linear-gradient(135deg, #773CA8 0%, #1B1366 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcomeContent {
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+}
+
+.welcomeTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.welcomeText {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.decorativeShape {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  bottom: -50px;
+  right: -50px;
+  z-index: 1;
+  animation: float 15s infinite ease-in-out;
+}
+
+/* Form section */
+.formSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.formBox {
+  background: white;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 440px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1B1366;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+/* Input fields */
+.inputGroup {
+  margin-bottom: 24px;
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #773CA8;
+  font-size: 18px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #773CA8;
+  box-shadow: 0 0 0 3px rgba(119, 60, 168, 0.1);
+  background-color: white;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  font-size: 18px;
+  padding: 8px;
+  transition: all 0.2s;
+}
+
+.passwordToggle:hover {
+  color: #773CA8;
+}
+
+/* Button styles */
+.button {
+  background-color: #773CA8;
+  color: white;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #5d2e86;
+}
+
+.buttonIcon {
+  transition: transform 0.3s ease;
+}
+
+.button:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Links section */
+.actionGroup {
+  margin-top: 32px;
+}
+.links {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.registerPrompt {
+  line-height: 1.6;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.registerPrompt span {
+  display: inline;
+}
+
+.link {
+  color: #773CA8;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline;
+  position: relative;
+}
+
+.link:hover {
+  color: #5d2e86;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.linkSecondary {
+  color: #1B1366;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.linkSecondary:hover {
+  color: #773CA8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Small animation on hover */
+.link::after,
+.linkSecondary::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #773CA8;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.link:hover::after,
+.linkSecondary:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* Error message */
+.error {
+  color: #ef4444;
+  font-size: 14px;
+  margin: -8px 0 16px;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #ef4444;
+}
+@media (max-width: 1024px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  .welcomeSection {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .welcomeContent {
+    max-width: 600px;
+  }
+  
+  .formSection {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcomeTitle {
+    font-size: 2rem;
+  }
+  
+  .welcomeText {
+    font-size: 1rem;
+  }
+  
+  .formBox {
+    padding: 30px 24px;
+    border-radius: 12px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  
+  .input {
+    padding: 12px 14px 12px 44px;
+    font-size: 14px;
+  }
+  
+  .button {
+    padding: 14px;
+    font-size: 15px;
+  }
+  
+  .purpleBlob, .blueBlob {
+    display: none;
+  }
+  .links {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .registerPrompt {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .linkSecondary {
+    font-size: 0.85rem;
+  }
+}

@@ -24,3 +24,35 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+   /* overflow: hidden; */
+}
+
+#__next {
+  height: 100%;
+}
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .invoiceA4,
+  .invoiceA4 * {
+    visibility: visible !important;
+  }
+
+  .invoiceA4 {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+

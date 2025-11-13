@@ -1,0 +1,287 @@
+.container {
+  padding: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- FORM GROUPS --- */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Global inputs/selects inside formGroup */
+.formGroup :global(input),
+.formGroup :global(select),
+.formGroup :global(textarea) {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.formGroup :global(input:focus),
+.formGroup :global(select:focus),
+.formGroup :global(textarea:focus) {
+  border-color: #2d7df4;
+}
+
+/* --- ROWS OF THREE FIELDS --- */
+.rowThree {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 900px) {
+  .rowThree {
+    grid-template-columns: 1fr;
+  }
+}
+/* --- ITEMS TABLE --- */
+.itemsTableWrapper {
+  overflow-x: auto;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.itemsTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* This ensures columns respect the defined widths */
+  min-width: 800px; /* Minimum width to prevent too much squeezing */
+}
+
+.itemsTable th,
+.itemsTable td {
+  border: 1px solid #ccc;
+  padding: 6px 4px; /* Reduced padding */
+  text-align: center;
+  font-size: 0.85rem; /* Smaller font */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemsTable th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  font-size: 0.8rem; /* Even smaller for headers */
+}
+
+.itemsTable input {
+  width: 100%;
+  min-width: 0;
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+}
+
+.itemsTable input:focus {
+  outline: none;
+  border-color: #2d7df4;
+}
+
+/* --- ADD / REMOVE BUTTONS --- */
+.btnAdd {
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  background-color: #2d7df4;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.btnAdd:hover {
+  background-color: #1e5fcc;
+}
+
+.btnRemove {
+  background-color: transparent;
+  border: none;
+  color: #c33;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.btnRemove:hover {
+  transform: scale(1.1);
+  color: #f00;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .itemsTable {
+    min-width: 700px; /* Even smaller minimum width on mobile */
+  }
+  
+  .itemsTable th,
+  .itemsTable td {
+    padding: 4px 2px;
+    font-size: 0.8rem;
+  }
+  
+  .itemsTable input {
+    padding: 3px 4px;
+    font-size: 0.8rem;
+  }
+}
+/* --- TOTALS --- */
+.totals {
+  text-align: right;
+  margin-top: 15px;
+  border-top: 2px solid #f1f1f1;
+  padding-top: 10px;
+}
+
+.totalsText {
+  font-weight: 600;
+  color: #333;
+  margin: 4px 0;
+}
+.actions {
+  display: flex;
+  gap: 10px; /* space between buttons if needed */
+  margin-top: 20px;
+}
+
+.newInvoiceButton {
+  margin-top: 15px; /* pushes it below the submit button */
+}
+
+.btnSecondary {
+  background-color: #f0f0f0;
+  color: #1b1366;
+  border: 1px solid #1b1366;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btnSecondary:hover {
+  background-color: #e0e0e0;
+}
+
+.btnPrimary {
+  background-color: #2d7df4;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background-color: #1e5fcc;
+}
+
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px 35px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.dialogText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #28a745;
+}
+
+.dialogButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.dialogButtons :global(button) {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.dialogButtons :global(button:first-child) {
+  background-color: #2d7df4;
+  color: white;
+}
+
+.dialogButtons :global(button:first-child:hover) {
+  background-color: #1e5fcc;
+}
+
+.dialogButtons :global(button:last-child) {
+  background-color: #28a745;
+  color: white;
+}
+
+.dialogButtons :global(button:last-child:hover) {
+  background-color: #218838;
+}
+
+/* --- ANIMATION --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 700px) {
+  .itemsTable :global(table),
+  .itemsTableWrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
