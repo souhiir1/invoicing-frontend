@@ -114,7 +114,7 @@ export default function InvoicesListPage() {
               Gérez et suivez vos factures en un seul endroit
             </p>
           </div>
-          <Link href="/invoices/create" className={styles.btnPrimary}>
+          <Link href="/create" className={styles.btnPrimary}>
             <span className={styles.btnIcon}>+</span>
             Nouvelle facture
           </Link>
@@ -155,7 +155,7 @@ export default function InvoicesListPage() {
               <div className={styles.emptyIcon}>📄</div>
               <h3>Aucune facture trouvée</h3>
               <p>Créez votre première facture pour commencer</p>
-              <Link href="/invoices/create" className={styles.btnPrimary}>
+              <Link href="/create" className={styles.btnPrimary}>
                 Créer une facture
               </Link>
             </div>
@@ -205,7 +205,7 @@ export default function InvoicesListPage() {
                             🖨️
                           </button>
                           <Link
-                            href={`/invoices/create?id=${inv.id}`}
+                            href={`/create?id=${inv.id}`}
                             className={styles.iconBtn}
                             aria-label="Modifier facture"
                             title="Modifier"
@@ -268,7 +268,7 @@ export default function InvoicesListPage() {
                         🖨️ Imprimer
                       </button>
                       <Link
-                        href={`/invoices/create?id=${inv.id}`}
+                        href={`/create?id=${inv.id}`}
                         className={styles.mobileBtn}
                       >
                         ✏️ Modifier

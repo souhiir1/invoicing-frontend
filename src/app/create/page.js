@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter, useSearchParams } from 'next/navigation';
 import AuthLayout from '@/app/components/AuthLayout';
-import PrintInvoice from '../print/PrintInvoice';
+import PrintInvoice from '../invoices/print/PrintInvoice';
 import styles from './page.module.css';
 
 export default function CreateInvoicePage() {
@@ -210,7 +210,7 @@ export default function CreateInvoicePage() {
       if (res.ok) {
         const data = await res.json();
         setSelectedInvoiceId(data.id);
-        if (!invoiceId) router.replace(`/invoices/create?id=${data.id}`);
+        if (!invoiceId) router.replace(`/create?id=${data.id}`);
         setShowDialog(true);
       } else alert('Erreur de sauvegarde');
     } catch (err) { console.error(err); alert('Erreur de sauvegarde'); }
@@ -227,7 +227,7 @@ export default function CreateInvoicePage() {
     setShowDialog(false);
     fetchNextRef();
     setSelectedInvoiceId(null);
-    router.replace('/invoices/create');
+    router.replace('/create');
   }
 
   
@@ -355,7 +355,7 @@ export default function CreateInvoicePage() {
               <button type="submit">{invoiceId ? 'Mettre à jour' : 'Créer la facture'}</button>
             </div>
 
-            <div className={styles.newInvoiceButton}>
+            <div className={styles.newInvoiceButton }>
               <button type="button" onClick={handleCreateNewInvoice}>Créer nouvelle facture</button>
             </div>
           </form>

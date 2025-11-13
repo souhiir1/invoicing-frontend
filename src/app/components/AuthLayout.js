@@ -39,7 +39,7 @@ export default function AuthLayout({ user, children }) {
     href: '/invoices',
     submenu: [
       { label: 'Liste des factures', href: '/invoices', icon: <FaListUl size={14} /> },
-      { label: 'Créer facture', href: '/invoices/create', icon: <FaPlusCircle size={14} /> },
+      { label: 'Créer facture', href: '/create', icon: <FaPlusCircle size={14} /> },
     ],
   },
 ];

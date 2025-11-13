@@ -190,7 +190,6 @@ export default function PrintInvoice({ invoiceId, open, onClose }) {
       }
     `;
 
-    // Create printable content
     const printableContent = `
       <div class="print-container">
         <!-- Header -->
@@ -319,7 +318,7 @@ export default function PrintInvoice({ invoiceId, open, onClose }) {
       </div>
     `;
 
-    // Create and open print window
+   
     const printWindow = window.open('', '_blank');
     printWindow.document.write(`
       <!DOCTYPE html>

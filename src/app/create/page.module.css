@@ -174,12 +174,12 @@
 }
 .actions {
   display: flex;
-  gap: 10px; /* space between buttons if needed */
+  gap: 10px; 
   margin-top: 20px;
 }
 
 .newInvoiceButton {
-  margin-top: 15px; /* pushes it below the submit button */
+  margin-top: 15px; 
 }
 
 .btnSecondary {
