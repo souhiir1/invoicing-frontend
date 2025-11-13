@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -8,9 +9,10 @@ import Link from 'next/link';
 
 export default function ResetPassword() {
   const searchParams = useSearchParams();
-  const token = searchParams.get('token');
   const router = useRouter();
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const [token, setToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -19,11 +21,15 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+
   useEffect(() => {
-    if (!token) {
+    const t = searchParams.get('token');
+    if (!t) {
       setError('Lien invalide ou expiré.');
+    } else {
+      setToken(t);
     }
-  }, [token]);
+  }, [searchParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,8 +68,8 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   return (
     <div className={styles.wrapper}>
-      <motion.form 
-        onSubmit={handleSubmit} 
+      <motion.form
+        onSubmit={handleSubmit}
         className={styles.formBox}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -88,11 +94,11 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
             required
             minLength={8}
           />
-          <button 
-            type="button" 
+          <button
+            type="button"
             className={styles.passwordToggle}
             onClick={() => setShowPassword(!showPassword)}
-            aria-label={showPassword ? "Hide password" : "Show password"}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
             {showPassword ? 'Cacher' : 'Afficher'}
           </button>
@@ -108,18 +114,18 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
             className={styles.input}
             required
           />
-          <button 
-            type="button" 
+          <button
+            type="button"
             className={styles.passwordToggle}
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+            aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
           >
             {showConfirmPassword ? 'Cacher' : 'Afficher'}
           </button>
         </div>
 
         {error && (
-          <motion.p 
+          <motion.p
             className={styles.error}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -129,7 +135,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         )}
 
         {success && (
-          <motion.div 
+          <motion.div
             className={styles.successContainer}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -139,18 +145,14 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
           </motion.div>
         )}
 
-        <motion.button 
-          type="submit" 
+        <motion.button
+          type="submit"
           className={styles.button}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           disabled={!token || isLoading}
         >
-          {isLoading ? (
-            <span className={styles.spinner}></span>
-          ) : (
-            'Mettre à jour'
-          )}
+          {isLoading ? <span className={styles.spinner}></span> : 'Mettre à jour'}
         </motion.button>
 
         <div className={styles.links}>
