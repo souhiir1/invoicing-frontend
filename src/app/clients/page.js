@@ -134,7 +134,7 @@ export default function ClientsPage() {
 
   const handleViewClick = async (client) => {
     try {
-      // Fetch detailed client data with projects and invoices
+    
       const res = await fetch(`${baseUrl}/api/clients/${client.id}/details`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -143,7 +143,7 @@ export default function ClientsPage() {
         const detailedData = await res.json();
         setViewData(detailedData);
       } else {
-        // Fallback to basic data if detailed endpoint fails
+        
         setViewData(client);
       }
       setViewOpen(true);
@@ -179,7 +179,7 @@ export default function ClientsPage() {
           </button>
         </header>
 
-        {/* Stats Summary */}
+    
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <div className={styles.statValue}>{clients.length}</div>
@@ -205,7 +205,6 @@ export default function ClientsPage() {
           </div>
         </div>
 
-        {/* Clients List */}
         <div className={styles.content}>
           {loading ? (
             <div className={styles.loading}>
@@ -227,7 +226,7 @@ export default function ClientsPage() {
             </div>
           ) : (
             <>
-              {/* Desktop Table */}
+            
               <div className={styles.tableContainer}>
                 <table className={styles.desktopTable}>
                   <thead>
@@ -401,7 +400,6 @@ export default function ClientsPage() {
           )}
         </div>
 
-        {/* Client Form Modal */}
         {modalOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>
@@ -507,7 +505,7 @@ export default function ClientsPage() {
           </div>
         )}
 
-        {/* Delete Confirmation Modal */}
+     
         {confirmOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>
@@ -577,7 +575,7 @@ export default function ClientsPage() {
           </div>
         )}
 
-        {/* Client Details Modal */}
+     
         {viewOpen && viewData && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>

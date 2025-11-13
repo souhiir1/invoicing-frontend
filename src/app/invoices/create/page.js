@@ -274,10 +274,11 @@ function handleCreateNewInvoice() {
                 />
               </div>
               <div className={styles.formGroup}>
-                <label>Client</label>
+                <label>Client*</label>
                 <select
                   value={form.client_id}
                   onChange={(e) => setForm({ ...form, client_id: e.target.value })}
+                  required
                 >
                   <option value="">-- Sélectionnez un client --</option>
                   {clients.map((c) => (

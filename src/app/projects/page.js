@@ -292,7 +292,6 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        {/* Projects List */}
         <div className={styles.content}>
           {loading ? (
             <div className={styles.loading}>
@@ -314,7 +313,7 @@ export default function ProjectsPage() {
             </div>
           ) : (
             <>
-              {/* Desktop Table */}
+         
               <div className={styles.tableContainer}>
                 <table className={styles.desktopTable}>
                   <thead>
@@ -419,7 +418,7 @@ export default function ProjectsPage() {
                 </table>
               </div>
 
-              {/* Mobile Cards */}
+           
               <div className={styles.mobileList}>
                 {projects.map((project) => (
                   <div key={project.id} className={styles.mobileCard}>
@@ -486,12 +485,11 @@ export default function ProjectsPage() {
           )}
         </div>
 
-        {/* Project Form Modal */}
         {modalOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>
               <div className={styles.modalHeader}>
-                <h3>{selectedProject ? 'Modifier le Projet' : 'Nouveau Projet'}</h3>
+                <h3>{selectedProject ? "Modifier le Projet" : "Nouveau Projet"}</h3>
                 <button 
                   onClick={() => setModalOpen(false)}
                   className={styles.closeBtn}
@@ -623,7 +621,7 @@ export default function ProjectsPage() {
                     Annuler
                   </button>
                   <button type="submit" className={styles.btnPrimary}>
-                    {selectedProject ? 'Mettre à jour' : 'Créer le projet'}
+                    {selectedProject ? "Mettre à jour" : "Créer le projet"}
                   </button>
                 </div>
               </form>
@@ -631,7 +629,7 @@ export default function ProjectsPage() {
           </div>
         )}
 
-        {/* Delete Confirmation Modal */}
+    
         {confirmOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>
@@ -658,8 +656,8 @@ export default function ProjectsPage() {
                   </div>
                 ) : (
                   <>
-                    <p>Êtes-vous sûr de vouloir supprimer le projet <strong>"{selectedProject?.name}"</strong> ?</p>
-                    <p className={styles.warningText}>Cette action est irréversible.</p>
+                    <p>{`Êtes-vous sûr de vouloir supprimer le projet`} <strong>{selectedProject?.name}</strong> {`?`}</p>
+                    <p className={styles.warningText}>{`Cette action est irréversible.`}</p>
                   </>
                 )}
               </div>
@@ -701,7 +699,6 @@ export default function ProjectsPage() {
           </div>
         )}
 
-        {/* Project Details Modal */}
         {viewOpen && viewData && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>
@@ -724,7 +721,7 @@ export default function ProjectsPage() {
                     </div>
                     <div className={styles.detailItem}>
                       <strong>Client:</strong>
-                      <span>{clients.find((c) => c.id === viewData.client_id)?.name || '-'}</span>
+                      <span>{clients.find((c) => c.id === viewData.client_id)?.name || "-"}</span>
                     </div>
                     <div className={styles.detailItem}>
                       <strong>Statut:</strong>
