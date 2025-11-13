@@ -7,6 +7,8 @@ import AuthLayout from '@/app/components/AuthLayout';
 import PrintInvoice from '../invoices/print/PrintInvoice';
 import styles from './page.module.css';
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
 export default function CreateInvoicePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
