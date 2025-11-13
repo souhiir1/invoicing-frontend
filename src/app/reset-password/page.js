@@ -7,9 +7,9 @@ import { FiLock, FiArrowLeft, FiCheckCircle } from 'react-icons/fi';
 import styles from './page.module.css';
 import Link from 'next/link';
 
-// Add this export to force dynamic rendering
-export const dynamic = 'force-dynamic';
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
 export default function ResetPassword() {
   const searchParams = useSearchParams();
   const router = useRouter();
