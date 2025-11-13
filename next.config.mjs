@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'], // ✅ Allow images from your backend
+    domains: ['localhost'], 
+  },
+  output: 'standalone',
+  experimental: {
+    serverComponentsExternalPackages: [],
   },
 };
 
