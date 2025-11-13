@@ -366,7 +366,7 @@ export default function PrintInvoice({ invoiceId, open, onClose }) {
           {!loading && invoice && (
             <article className={styles.invoiceA4}>
 
-              {/* HEADER */}
+             
               <header className={styles.header}>
                 <div className={styles.logoContainer}>
                   {user?.logo ? (

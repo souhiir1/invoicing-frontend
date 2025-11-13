@@ -66,7 +66,7 @@ const handleSubscribe = async (type) => {
         <div className={styles.header}>
           <div className={styles.trialEnded}>
             <FiZap />
-            Période d'essai terminée
+            {`Période d'essai terminée`}
           </div>
           <h1 className={styles.title}>Choisissez Votre Abonnement</h1>
           <p className={styles.subtitle}>
@@ -75,7 +75,7 @@ const handleSubscribe = async (type) => {
         </div>
 
         <div className={styles.plans}>
-          {/* Monthly Plan */}
+      
           <div className={styles.plan}>
             <h3 className={styles.planTitle}>Mensuel</h3>
             <div className={styles.planPrice}>15 TND</div>
@@ -116,7 +116,7 @@ const handleSubscribe = async (type) => {
             </button>
           </div>
 
-          {/* Lifetime Plan */}
+      
           <div className={`${styles.plan} ${styles.popular}`}>
             <h3 className={styles.planTitle}>Accès à Vie</h3>
             <div className={styles.planPrice}>150 TND</div>

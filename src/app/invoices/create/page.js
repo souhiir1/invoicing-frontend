@@ -313,7 +313,7 @@ function handleCreateNewInvoice() {
                 />
               </div>
               <div className={styles.formGroup}>
-                <label>Date d'échéance</label>
+                <label>{`Date d'échéance`}</label>
                 <input
                   type="date"
                   value={form.due_date}

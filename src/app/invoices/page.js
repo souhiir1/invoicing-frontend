@@ -4,7 +4,7 @@ import AuthLayout from '../components/AuthLayout';
 import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import Link from 'next/link';
-import PrintInvoice from './print/PrintInvoice'; // Import the PrintInvoice component
+import PrintInvoice from './print/PrintInvoice'; 
 
 export default function InvoicesListPage() {
   const [clients, setClients] = useState([]);
@@ -18,7 +18,7 @@ export default function InvoicesListPage() {
   const token = useSelector((state) => state.user.token);
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  // Fetch data
+ 
   useEffect(() => {
     fetchInvoices();
   }, []);
@@ -120,7 +120,7 @@ export default function InvoicesListPage() {
           </Link>
         </header>
 
-        {/* Stats Summary */}
+   
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <div className={styles.statValue}>{invoices.length}</div>
@@ -142,11 +142,11 @@ export default function InvoicesListPage() {
             <div className={styles.statValue}>
               {invoices.reduce((sum, inv) => sum + (inv.total_ttc || 0), 0).toFixed(3)} TND
             </div>
-            <div className={styles.statLabel}>Chiffre d'affaires</div>
+            <div className={styles.statLabel}>{`Chiffre d'affaires`}</div>
           </div>
         </div>
 
-        {/* Desktop Table */}
+      
         <div className={styles.tableContainer}>
           {loading ? (
             <div className={styles.loading}>Chargement des factures...</div>
@@ -227,7 +227,6 @@ export default function InvoicesListPage() {
                 </tbody>
               </table>
 
-              {/* Mobile Cards */}
               <div className={styles.mobileList}>
                 {invoices.map((inv) => (
                   <div key={inv.id} className={styles.mobileCard}>
@@ -288,7 +287,7 @@ export default function InvoicesListPage() {
           )}
         </div>
 
-        {/* Print Invoice Modal */}
+       
         <PrintInvoice 
           invoiceId={selectedInvoiceId} 
           open={printOpen} 

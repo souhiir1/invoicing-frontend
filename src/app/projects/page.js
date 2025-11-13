@@ -247,7 +247,7 @@ export default function ProjectsPage() {
               Mes Projets
             </h1>
             <p className={styles.subtitle}>
-              Gérez et suivez l'avancement de vos projets
+              {`Gérez et suivez l'avancement de vos projets`}
             </p>
           </div>
           <button

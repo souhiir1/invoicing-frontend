@@ -139,11 +139,11 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
             <div className={styles.links}>
               <div className={styles.registerPrompt}>
-                <span>Vous n'avez pas encore de compte ? </span>
+                <span>{`Vous n'avez pas encore de compte ? `}</span>
                 <Link href="/register" className={styles.link}>
                   Inscrivez-vous maintenant
                 </Link>
-                <span> et profitez de 7 jours d'essai gratuit.</span>
+                <span> {`et profitez de 7 jours d'essai gratuit.`}</span>
               </div>
               <div className={styles.forgotPassword}>
                 <Link href="/forgot-password" className={styles.linkSecondary}>

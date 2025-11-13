@@ -32,7 +32,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       if (data.id) {
         router.push('/login');
       } else {
-        setError(data.error || 'Erreur lors de l\'inscription');
+        setError(data.error || 'Erreur lors de linscription');
       }
     } catch (err) {
       console.error(err);
@@ -122,7 +122,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
             <span className={styles.spinner}></span>
           ) : (
             <>
-              S'inscrire <FiArrowRight className={styles.buttonIcon} />
+              {`S'inscrire`} <FiArrowRight className={styles.buttonIcon} />
             </>
           )}
         </motion.button>
