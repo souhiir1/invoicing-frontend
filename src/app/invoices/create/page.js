@@ -12,8 +12,8 @@ export default function CreateInvoicePage() {
   const searchParams = useSearchParams();
   const invoiceId = searchParams.get('id');
 
-  const user = useSelector((state) => state.user.user);
-  const token = useSelector((state) => state.user.token);
+  const user = useSelector((state) => state.user?.user);
+  const token = useSelector((state) => state.user?.token);
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const [clients, setClients] = useState([]);
@@ -22,6 +22,7 @@ export default function CreateInvoicePage() {
   const [showDialog, setShowDialog] = useState(false);
   const [printOpen, setPrintOpen] = useState(false);
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
+  const [isClient, setIsClient] = useState(false);
 
   const [form, setForm] = useState({
     client_id: '',
@@ -39,21 +40,30 @@ export default function CreateInvoicePage() {
   const [totals, setTotals] = useState({ total_ht: 0, total_tva: 0, total_ttc: 0, total_remise: 0 });
 
   useEffect(() => {
-    fetchClients();
-    if (invoiceId) fetchInvoice(invoiceId);
-    else fetchNextRef();
-  }, [invoiceId]);
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
-    if (form.client_id) fetchProjects(form.client_id);
-  }, [form.client_id]);
+    if (isClient && token) {
+      fetchClients();
+      if (invoiceId) fetchInvoice(invoiceId);
+      else fetchNextRef();
+    }
+  }, [invoiceId, isClient, token]);
+
+  useEffect(() => {
+    if (isClient && form.client_id && token) {
+      fetchProjects(form.client_id);
+    }
+  }, [form.client_id, isClient, token]);
 
   useEffect(() => {
     calculateTotals();
   }, [form.items, form.timber]);
 
-  // FETCH FUNCTIONS
   async function fetchClients() {
+    if (!token) return;
+    
     try {
       const res = await fetch(`${baseUrl}/api/clients`, { headers: { Authorization: `Bearer ${token}` } });
       if (res.ok) setClients(await res.json());
@@ -61,6 +71,8 @@ export default function CreateInvoicePage() {
   }
 
   async function fetchProjects(clientId) {
+    if (!token) return;
+    
     try {
       const res = await fetch(`${baseUrl}/api/projects/byClient/${clientId}`, { headers: { Authorization: `Bearer ${token}` } });
       if (res.ok) setProjects(await res.json());
@@ -68,6 +80,8 @@ export default function CreateInvoicePage() {
   }
 
   async function fetchInvoice(id) {
+    if (!token) return;
+    
     setIsLoading(true);
     try {
       const res = await fetch(`${baseUrl}/api/invoices/${id}`, { headers: { Authorization: `Bearer ${token}` } });
@@ -105,6 +119,8 @@ export default function CreateInvoicePage() {
   }
 
   async function fetchNextRef() {
+    if (!token) return;
+    
     try {
       const res = await fetch(`${baseUrl}/api/invoices/nextRef`, { headers: { Authorization: `Bearer ${token}` } });
       if (res.ok) {
@@ -114,7 +130,6 @@ export default function CreateInvoicePage() {
     } catch (err) { console.error(err); }
   }
 
-  // ITEM HANDLERS
   function handleItemChange(index, field, value) {
     const updatedItems = [...form.items];
     const item = { ...updatedItems[index], [field]: value };
@@ -176,6 +191,11 @@ export default function CreateInvoicePage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!token) {
+      alert('Token non disponible');
+      return;
+    }
+    
     const payload = { ...form, total_ht: totals.total_ht, total_ttc: totals.total_ttc, tva: totals.total_tva, remise: totals.total_remise };
 
     const method = invoiceId ? 'PUT' : 'POST';
@@ -210,6 +230,17 @@ export default function CreateInvoicePage() {
     router.replace('/invoices/create');
   }
 
+  
+  if (!isClient) {
+    return (
+      <AuthLayout user={null}>
+        <div className={styles.container}>
+          <div>Chargement...</div>
+        </div>
+      </AuthLayout>
+    );
+  }
+
   return (
     <AuthLayout user={user}>
       <div className={styles.container}>
@@ -218,7 +249,6 @@ export default function CreateInvoicePage() {
         {isLoading ? <div>Chargement...</div> : (
           <form onSubmit={handleSubmit} className={styles.form}>
 
-  
             <div className={styles.rowThree}>
               <div className={styles.formGroup}>
                 <label>Référence facture</label>
@@ -255,7 +285,6 @@ export default function CreateInvoicePage() {
               </div>
             </div>
 
-        
             <div className={styles.rowThree}>
               <div className={styles.formGroup}>
                 <label>Statut de paiement</label>
@@ -280,7 +309,6 @@ export default function CreateInvoicePage() {
               </div>
             </div>
 
-        
             <div className={styles.itemsTableWrapper}>
               <table className={styles.itemsTable}>
                 <thead>
@@ -315,7 +343,6 @@ export default function CreateInvoicePage() {
               <button type="button" onClick={addItem}>+ Ajouter un article</button>
             </div>
 
-        
             <div className={styles.totals}>
               <p>Total HT: {totals.total_ht.toFixed(3)} TND</p>
               <p>Total Remise: {totals.total_remise.toFixed(3)} TND</p>
