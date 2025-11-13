@@ -35,6 +35,8 @@ export default function ClientsPage() {
   const [deleteError, setDeleteError] = useState('');
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -58,7 +60,7 @@ export default function ClientsPage() {
       setLoading(false);
     }
   };
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { 
     fetchClients(); 
   }, []);
@@ -330,7 +332,7 @@ export default function ClientsPage() {
                 </table>
               </div>
 
-              {/* Mobile Cards */}
+        
               <div className={styles.mobileList}>
                 {clients.map((client) => (
                   <div key={client.id} className={styles.mobileCard}>
@@ -529,11 +531,11 @@ export default function ClientsPage() {
                       <strong>Impossible de supprimer</strong>
                       <p>{deleteError}</p>
                     </div>
-                  </div>
+                  </div> 
                 ) : (
                   <>
-                    <p>Êtes-vous sûr de vouloir supprimer le client <strong>"{selectedClient?.name}"</strong> ?</p>
-                    <p className={styles.warningText}>Cette action est irréversible.</p>
+                      <p>{`Êtes-vous sûr de vouloir supprimer le client`} <strong>{selectedClient?.name}</strong> {`?`}</p>
+                    <p className={styles.warningText}>{`Cette action est irréversible.`}</p>
                   </>
                 )}
               </div>

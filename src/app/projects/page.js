@@ -83,7 +83,7 @@ export default function ProjectsPage() {
       setLoading(false);
     }
   };
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchClients();
     fetchProjects();
@@ -104,7 +104,7 @@ export default function ProjectsPage() {
       console.error('Erreur mise à jour statut:', err);
     }
   };
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
