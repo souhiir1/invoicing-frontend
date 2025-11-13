@@ -7,6 +7,9 @@ import AuthLayout from '@/app/components/AuthLayout';
 import PrintInvoice from '../print/PrintInvoice';
 import styles from './page.module.css';
 
+// Add this export to force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function CreateInvoicePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -39,6 +42,7 @@ export default function CreateInvoicePage() {
 
   const [totals, setTotals] = useState({ total_ht: 0, total_tva: 0, total_ttc: 0, total_remise: 0 });
 
+  // Set isClient to true when component mounts on client side
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -61,6 +65,7 @@ export default function CreateInvoicePage() {
     calculateTotals();
   }, [form.items, form.timber]);
 
+  // FETCH FUNCTIONS
   async function fetchClients() {
     if (!token) return;
     
@@ -130,6 +135,7 @@ export default function CreateInvoicePage() {
     } catch (err) { console.error(err); }
   }
 
+  // ITEM HANDLERS
   function handleItemChange(index, field, value) {
     const updatedItems = [...form.items];
     const item = { ...updatedItems[index], [field]: value };
@@ -230,7 +236,7 @@ export default function CreateInvoicePage() {
     router.replace('/invoices/create');
   }
 
-  
+  // Don't render anything during server-side rendering
   if (!isClient) {
     return (
       <AuthLayout user={null}>
