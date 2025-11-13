@@ -218,7 +218,7 @@ export default function CreateInvoicePage() {
         {isLoading ? <div>Chargement...</div> : (
           <form onSubmit={handleSubmit} className={styles.form}>
 
-            {/* ROW 1 */}
+  
             <div className={styles.rowThree}>
               <div className={styles.formGroup}>
                 <label>Référence facture</label>
@@ -237,7 +237,6 @@ export default function CreateInvoicePage() {
               </div>
             </div>
 
-            {/* ROW 2 */}
             <div className={styles.rowThree}>
               <div className={styles.formGroup}>
                 <label>Projet</label>
@@ -251,12 +250,12 @@ export default function CreateInvoicePage() {
                 <input type="date" value={form.issue_date} onChange={(e) => setForm({ ...form, issue_date: e.target.value })} />
               </div>
               <div className={styles.formGroup}>
-                <label>Date d'échéance</label>
+                <label>{`Date d'échéance`}</label>
                 <input type="date" value={form.due_date} onChange={(e) => setForm({ ...form, due_date: e.target.value })} />
               </div>
             </div>
 
-            {/* ROW 3 */}
+        
             <div className={styles.rowThree}>
               <div className={styles.formGroup}>
                 <label>Statut de paiement</label>
@@ -281,7 +280,7 @@ export default function CreateInvoicePage() {
               </div>
             </div>
 
-            {/* ITEMS TABLE */}
+        
             <div className={styles.itemsTableWrapper}>
               <table className={styles.itemsTable}>
                 <thead>
@@ -316,7 +315,7 @@ export default function CreateInvoicePage() {
               <button type="button" onClick={addItem}>+ Ajouter un article</button>
             </div>
 
-            {/* TOTALS */}
+        
             <div className={styles.totals}>
               <p>Total HT: {totals.total_ht.toFixed(3)} TND</p>
               <p>Total Remise: {totals.total_remise.toFixed(3)} TND</p>
