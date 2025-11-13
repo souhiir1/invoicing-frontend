@@ -7,12 +7,14 @@ import { FaUserCircle, FaArrowLeft, FaEdit, FaCheck, FaTimes, FaLock, FaCog } fr
 import styles from './page.module.css';
 import Image from 'next/image';
 import AuthLayout from '../components/AuthLayout';
+
 export default function ProfilePage() {
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const router = useRouter();
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -68,8 +70,8 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
     }
   };
 
-  const triggerFileInput = () => fileInputRef.current.click();
-  const triggerLogoInput = () => logoInputRef.current.click();
+  const triggerFileInput = () => fileInputRef.current?.click();
+  const triggerLogoInput = () => logoInputRef.current?.click();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -111,7 +113,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    
+
     if (newPassword !== confirmPassword) {
       setError('Les mots de passe ne correspondent pas.');
       return;
@@ -143,10 +145,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
     }
   };
 
-  const handleCancel = () => {
-    setShowConfirmation(false);
-  };
-
+  const handleCancel = () => setShowConfirmation(false);
   const handlePasswordCancel = () => {
     setShowPasswordModal(false);
     setNewPassword('');
@@ -155,251 +154,235 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   };
 
   return (
-      <AuthLayout user={user}>
-    <div className={styles.wrapper}>
-      {/* <button className={styles.backButton} onClick={() => router.push('/dashboard')}>
-        <FaArrowLeft /> Retour
-      </button> */}
+    <AuthLayout user={user}>
+      <div className={styles.wrapper}>
+        <h2 className={styles.title}>Mon Profil</h2>
 
-      <h2 className={styles.title}>Mon Profil</h2>
-
-      <form onSubmit={(e) => { e.preventDefault(); setShowConfirmation(true); }} className={styles.form}>
-        <div className={styles.avatarSection}>
-          <div className={styles.avatarContainer}>
-            {previewImage ? (
-              <Image 
-                src={previewImage} 
-                alt="Profile" 
-                width={120} 
-                height={120} 
-                className={styles.avatarImage}
-              />
-            ) : (
-              <FaUserCircle className={styles.avatarPlaceholder} />
-            )}
-            <button 
-              type="button" 
-              className={styles.editAvatarButton}
-              onClick={triggerFileInput}
-            >
-              <FaEdit />
-            </button>
-            <input 
-              type="file" 
-              ref={fileInputRef}
-              accept="image/*" 
-              onChange={handleImageChange} 
-              className={styles.hiddenInput}
-            />
-          </div>
-
-          <div className={styles.logoContainer}>
-            <p className={styles.sectionLabel}>Logo:</p>
-            <div className={styles.logoPreview}>
-              {previewLogo ? (
-                <Image 
-                  src={previewLogo} 
-                  alt="Logo" 
-                  width={100} 
-                  height={100} 
-                  className={styles.logoImage}
+        <form onSubmit={(e) => { e.preventDefault(); setShowConfirmation(true); }} className={styles.form}>
+          <div className={styles.avatarSection}>
+            <div className={styles.avatarContainer}>
+              {previewImage ? (
+                <Image
+                  src={previewImage}
+                  alt="Profile"
+                  width={120}
+                  height={120}
+                  className={styles.avatarImage}
                 />
               ) : (
-                <div className={styles.logoPlaceholder}>Choisir un logo</div>
+                <FaUserCircle className={styles.avatarPlaceholder} />
               )}
-              <button 
-                type="button" 
-                className={styles.editLogoButton}
-                onClick={triggerLogoInput}
-              >
+              <button type="button" className={styles.editAvatarButton} onClick={triggerFileInput}>
                 <FaEdit />
               </button>
-              <input 
-                type="file" 
-                ref={logoInputRef}
-                accept="image/*" 
-                onChange={handleLogoChange} 
+              <input
+                type="file"
+                ref={fileInputRef}
+                accept="image/*"
+                onChange={handleImageChange}
                 className={styles.hiddenInput}
               />
             </div>
-          </div>
-        </div>
 
-       
-        <div className={styles.formGrid}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Nom complet</label>
-            <input
-              type="text"
-              name="full_name"
-              value={formData.full_name}
-              onChange={handleChange}
-              className={styles.input}
-              required
-            />
+            <div className={styles.logoContainer}>
+              <p className={styles.sectionLabel}>Logo:</p>
+              <div className={styles.logoPreview}>
+                {previewLogo ? (
+                  <Image
+                    src={previewLogo}
+                    alt="Logo"
+                    width={100}
+                    height={100}
+                    className={styles.logoImage}
+                  />
+                ) : (
+                  <div className={styles.logoPlaceholder}>Choisir un logo</div>
+                )}
+                <button type="button" className={styles.editLogoButton} onClick={triggerLogoInput}>
+                  <FaEdit />
+                </button>
+                <input
+                  type="file"
+                  ref={logoInputRef}
+                  accept="image/*"
+                  onChange={handleLogoChange}
+                  className={styles.hiddenInput}
+                />
+              </div>
+            </div>
           </div>
 
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={styles.input}
-              required
-            />
+          <div className={styles.formGrid}>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Nom complet</label>
+              <input
+                type="text"
+                name="full_name"
+                value={formData.full_name}
+                onChange={handleChange}
+                className={styles.input}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={styles.input}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Plan</label>
+              <input
+                type="text"
+                name="plan"
+                value={user?.plan || ''}
+                className={`${styles.input} ${styles.disabledInput}`}
+                disabled
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Téléphone</label>
+              <input
+                type="text"
+                name="tel"
+                value={formData.tel}
+                onChange={handleChange}
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Adresse</label>
+              <input
+                type="text"
+                name="adresse"
+                value={formData.adresse}
+                onChange={handleChange}
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Matricule fiscale</label>
+              <input
+                type="text"
+                name="matricule_fiscal"
+                value={formData.matricule_fiscal}
+                onChange={handleChange}
+                className={styles.input}
+              />
+            </div>
           </div>
 
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Plan</label>
+          <div className={styles.passwordSection}>
+            <div className={styles.passwordHeader}>
+              <h3 className={styles.sectionTitle}>Mot de passe</h3>
+              <button
+                type="button"
+                className={styles.passwordEditButton}
+                onClick={() => setShowPasswordModal(true)}
+              >
+                <FaLock /> <FaCog /> Modifier
+              </button>
+            </div>
             <input
-              type="text"
-              name="plan"
-              value={user.plan || ''}
+              type="password"
+              value="********"
               className={`${styles.input} ${styles.disabledInput}`}
               disabled
             />
           </div>
 
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Téléphone</label>
-            <input
-              type="text"
-              name="tel"
-              value={formData.tel}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          </div>
+          {error && <div className={styles.error}>{error}</div>}
+          {success && <div className={styles.success}>{success}</div>}
 
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Adresse</label>
-            <input
-              type="text"
-              name="adresse"
-              value={formData.adresse}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Matricule fiscale</label>
-            <input
-              type="text"
-              name="matricule_fiscal"
-              value={formData.matricule_fiscal}
-              onChange={handleChange}
-              className={styles.input}
-            />
-          </div>
-          </div>
-
-        <div className={styles.passwordSection}>
-          <div className={styles.passwordHeader}>
-            <h3 className={styles.sectionTitle}>Mot de passe</h3>
-            <button 
-              type="button" 
-              className={styles.passwordEditButton}
-              onClick={() => setShowPasswordModal(true)}
-            >
-              <FaLock /> <FaCog /> Modifier
+          <div className={styles.buttonGroup}>
+            <button type="submit" className={styles.saveButton}>
+              Sauvegarder
             </button>
           </div>
-        <input
-  type="password"
-  value="********"
-  className={`${styles.input} ${styles.disabledInput}`}
-  disabled
-/>
-        </div>
+        </form>
 
-        {error && <div className={styles.error}>{error}</div>}
-        {success && <div className={styles.success}>{success}</div>}
-
-        <div className={styles.buttonGroup}>
-          {/* <button type="button" className={styles.cancelButton} onClick={() => router.push('/dashboard')}>
-            Annuler
-          </button> */}
-          <button type="submit" className={styles.saveButton}>
-            Sauvegarder
-          </button>
-        </div>
-      </form>
-
-      {showConfirmation && (
-        <div className={styles.confirmationModal}>
-          <div className={styles.modalContent}>
-            <h3>Confirmer les modifications</h3>
-            <p>Êtes-vous sûr de vouloir enregistrer ces modifications ?</p>
-            <div className={styles.modalButtons}>
-              <button 
-                type="button" 
-                className={styles.modalCancelButton}
-                onClick={handleCancel}
-              >
-                <FaTimes /> Annuler
-              </button>
-              <button 
-                type="button" 
-                className={styles.modalConfirmButton}
-                onClick={handleSubmit}
-              >
-                <FaCheck /> Confirmer
-              </button>
+        {showConfirmation && (
+          <div className={styles.confirmationModal}>
+            <div className={styles.modalContent}>
+              <h3>Confirmer les modifications</h3>
+              <p>{`Êtes-vous sûr de vouloir enregistrer ces modifications ?`}</p>
+              <div className={styles.modalButtons}>
+                <button
+                  type="button"
+                  className={styles.modalCancelButton}
+                  onClick={handleCancel}
+                >
+                  <FaTimes /> Annuler
+                </button>
+                <button
+                  type="button"
+                  className={styles.modalConfirmButton}
+                  onClick={handleSubmit}
+                >
+                  <FaCheck /> Confirmer
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {showPasswordModal && (
-        <div className={styles.confirmationModal}>
-          <div className={styles.modalContent}>
-            <h3>Modifier le mot de passe</h3>
-            
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Nouveau mot de passe</label>
-              <input
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className={styles.input}
-              />
-            </div>
+        {showPasswordModal && (
+          <div className={styles.confirmationModal}>
+            <div className={styles.modalContent}>
+              <h3>Modifier le mot de passe</h3>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Confirmer le mot de passe</label>
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className={styles.input}
-              />
-            </div>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Nouveau mot de passe</label>
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  className={styles.input}
+                />
+              </div>
 
-            {error && <div className={styles.error}>{error}</div>}
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Confirmer le mot de passe</label>
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className={styles.input}
+                />
+              </div>
 
-            <div className={styles.modalButtons}>
-              <button 
-                type="button" 
-                className={styles.modalCancelButton}
-                onClick={handlePasswordCancel}
-              >
-                <FaTimes /> Annuler
-              </button>
-              <button 
-                type="button" 
-                className={styles.modalConfirmButton}
-                onClick={handlePasswordSubmit}
-              >
-                <FaCheck /> Enregistrer
-              </button>
+              {error && <div className={styles.error}>{error}</div>}
+
+              <div className={styles.modalButtons}>
+                <button
+                  type="button"
+                  className={styles.modalCancelButton}
+                  onClick={handlePasswordCancel}
+                >
+                  <FaTimes /> Annuler
+                </button>
+                <button
+                  type="button"
+                  className={styles.modalConfirmButton}
+                  onClick={handlePasswordSubmit}
+                >
+                  <FaCheck /> Enregistrer
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </AuthLayout>
   );
 }
